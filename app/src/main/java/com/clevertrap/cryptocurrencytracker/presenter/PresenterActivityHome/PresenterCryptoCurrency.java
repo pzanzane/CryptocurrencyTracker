@@ -42,12 +42,14 @@ public class PresenterCryptoCurrency implements IPresenterHome{
 
             Log.d("WASTE","List: "+list.size());
 
+            iView.hideProgress();
             iView.loadDataSuccess(list);
         }
 
         @Override
         public void onCryptoLoadFailed(String message) {
             Log.d("WASTE","Error Message: "+message);
+            iView.hideProgress();
             iView.loadDataFailed(message);
         }
     };

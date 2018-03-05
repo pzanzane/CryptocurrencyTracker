@@ -1,7 +1,9 @@
 package com.clevertrap.cryptocurrencytracker.adapter;
 
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,11 +17,20 @@ public class AdapterCryptocurrency extends RecyclerView.Adapter<AdapterCryptocur
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView textView = null;
+        private TextView textName = null;
+        private TextView textSymbol = null;
+        private TextView txtPrice = null;
+        private TextView txtOneHourChange = null;
+        private TextView txtTwentyFourHourChange = null;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textView = itemView.findViewById(R.id.txtName);
+            textName = itemView.findViewById(R.id.txtName);
+            textSymbol = itemView.findViewById(R.id.txtSymbol);
+            txtPrice = itemView.findViewById(R.id.txtPrice);
+            txtTwentyFourHourChange = itemView.findViewById(R.id.txt24HPriceChange);
+            txtOneHourChange = itemView.findViewById(R.id.txt1HPriceChange);
 
         }
     }
@@ -30,8 +41,7 @@ public class AdapterCryptocurrency extends RecyclerView.Adapter<AdapterCryptocur
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        ViewHolder holder = new ViewHolder(parent.inflate(parent.getContext(), R.layout.view_cryto_item,parent));
+        ViewHolder holder = new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_cryto_item,null));
         return holder;
     }
 
@@ -39,7 +49,18 @@ public class AdapterCryptocurrency extends RecyclerView.Adapter<AdapterCryptocur
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         PojoCryptoItem model = listModels.get(position);
-        holder.textView.setText(model.getName());
+        holder.textName.setText(model.getName());
+        holder.textSymbol.setText(model.getSymbol());
+        holder.txtPrice.setText("$ " + model.getPriceUsd());
+        holder.txtTwentyFourHourChange.setText(model.getTwentyFourHourChange());
+        holder.txtOneHourChange.setText(model.getOneHourChange());
+
+        int colorFourtyHour = Double.parseDouble(model.getTwentyFourHourChange())<0?Color.RED:Color.GREEN;
+        int colorOneHour = Double.parseDouble(model.getOneHourChange())<0?Color.RED:Color.GREEN;
+
+        holder.txtTwentyFourHourChange.setTextColor(colorFourtyHour);
+        holder.txtOneHourChange.setTextColor(colorOneHour);
+
     }
 
     @Override

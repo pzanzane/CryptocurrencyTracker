@@ -23,6 +23,12 @@ public class PojoCryptoItem {
     @SerializedName("price_btc")
     private String priceBTC = null;
 
+    @SerializedName("percent_change_24h")
+    private String twentyFourHourChange = null;
+
+    @SerializedName("percent_change_1h")
+    private String oneHourChange = null;
+
     public String getName() {
         return name;
     }
@@ -69,5 +75,21 @@ public class PojoCryptoItem {
 
     public void setPriceBTC(String priceBTC) {
         this.priceBTC = priceBTC;
+    }
+
+    public String getTwentyFourHourChange() {
+        return twentyFourHourChange;
+    }
+
+    public void setTwentyFourHourChange(String twentyFourHourChange) {
+        this.twentyFourHourChange = twentyFourHourChange;
+    }
+
+    public String getOneHourChange() {
+        return oneHourChange;
+    }
+
+    public void setOneHourChange(String oneHourChange) {
+        this.oneHourChange = oneHourChange;
     }
 }
