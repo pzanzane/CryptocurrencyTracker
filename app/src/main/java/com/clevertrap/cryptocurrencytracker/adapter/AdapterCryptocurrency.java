@@ -50,10 +50,10 @@ public class AdapterCryptocurrency extends RecyclerView.Adapter<AdapterCryptocur
 
         PojoCryptoItem model = listModels.get(position);
         holder.textName.setText(model.getName());
-        holder.textSymbol.setText(model.getSymbol());
+        holder.textSymbol.setText("("+model.getSymbol()+")");
         holder.txtPrice.setText("$ " + model.getPriceUsd());
-        holder.txtTwentyFourHourChange.setText(model.getTwentyFourHourChange());
-        holder.txtOneHourChange.setText(model.getOneHourChange());
+        holder.txtTwentyFourHourChange.setText(model.getTwentyFourHourChange()+" %");
+        holder.txtOneHourChange.setText(model.getOneHourChange()+" %");
 
         int colorFourtyHour = Double.parseDouble(model.getTwentyFourHourChange())<0?Color.RED:Color.GREEN;
         int colorOneHour = Double.parseDouble(model.getOneHourChange())<0?Color.RED:Color.GREEN;
